@@ -6,9 +6,20 @@ import java.math.BigDecimal;
 
 public class DefaultTax implements TaxCalculator{
 
+    RequestItem item;
+    Money net;
+
+    public DefaultTax(RequestItem item) {
+        this.item = item;
+        net = item.getTotalCost();
+    }
+
+    public Money getNet() {
+        return net;
+    }
+
     @Override
-    public Tax calculate(RequestItem item) {
-        Money net = item.getTotalCost();
+    public Tax calculate() {
         BigDecimal ratio = null;
         String desc = null;
 

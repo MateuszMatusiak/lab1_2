@@ -25,9 +25,10 @@ public class BookKeeper {
         Invoice invoice = Invoice.generateInvoice(Id.generate(), invoiceRequest.getClient());
 
         for (RequestItem item : invoiceRequest.getItems()) {
+            DefaultTax calc = new DefaultTax(item);
+            Tax tax = calc.calculate();
 
-
-            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), net, tax);
+            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), calc.getNet(), tax);
             invoice.addItem(invoiceLine);
         }
 
