@@ -14,10 +14,24 @@ package pl.com.bottega.ecommerce.sales.domain.invoicing;
 
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
-public interface Tax {
-    public Money getAmount();
+public class Tax {
 
-    public String getDescription();
+    private Money amount;
 
-    public InvoiceLine calculate();
+    private String description;
+
+    public Tax(Money amount, String description) {
+        super();
+        this.amount = amount;
+        this.description = description;
+    }
+
+    public Money getAmount() {
+        return amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
 }
